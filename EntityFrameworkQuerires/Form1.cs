@@ -56,6 +56,30 @@ namespace EntityFrameworkQuerires
 
             MessageBox.Show(displayString.ToString());
         }
+
+        private void btnMiscQueries_Click(object sender, EventArgs e)
+        {
+            APContext dbContext = new();
+
+            // Check if something exists
+            bool doesExist = (from v in dbContext.Vendors
+                             where v. VendorState == "CA"
+                             select v).Any();
+
+            // get number of Invoices
+            int invoiceCount = (from invoice in dbContext.Vendors
+                                select invoice).Count();
+
+            //Query a single Vendor
+            Vendor ibm = (from v in dbContext.Vendors
+                         where v.VendorName == "IBM"
+                         select v).Single();
+
+            if (ibm != null)
+            {
+                // Do something with the Vendor Object
+            }
+        }
     }
 
     class VendorLocation
